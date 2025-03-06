@@ -1,15 +1,42 @@
 syntax = "proto3";
 
-package hello;
+package fraud_detection;
 
-service HelloService {
-    rpc SayHello (HelloRequest) returns (HelloResponse);
+service FraudDetection {
+    rpc CheckFraud(FraudRequest) returns (FraudResponse);
 }
 
-message HelloRequest {
-    string name = 1;
+message FraudRequest {
+    string order_id = 1;
+    string user_id = 2;
+    float amount = 3;
+    string shipping_method = 4;
+    string user_comment = 5;
+    bool gift_wrapping = 6;
+    string country = 7;
+    int64 timestamp = 8;
+    BillingAddress billing_address = 9;
 }
 
-message HelloResponse {
-    string greeting = 1;
+message BillingAddress {
+    string street = 1;
+    string city = 2;
+    string state = 3;
+    string zip = 4;
+    string country = 5;
+}
+
+message FraudResponse {
+    bool flagged = 1;
+    string reason = 2;
+    FraudCheckDetails details = 3;
+}
+
+message FraudCheckDetails {
+    string order_id = 1;
+    string status = 2;
+    BillingAddress billing_address = 3;
+    string user_comment = 4;
+    bool gift_wrapping = 5;
+    string shipping_method = 6;
 }
