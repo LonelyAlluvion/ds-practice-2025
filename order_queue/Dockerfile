@@ -6,11 +6,11 @@ FROM python:3.11
 WORKDIR /app
 
 # Copy the requirements file to the working directory
-COPY ./orchestrator/requirements.txt .
+COPY ./order_queue/requirements.txt .
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000
-# Set the command to run the container
-CMD python utils/other/hotreload.py "orchestrator/src/app.py"
+# Set the command to run the application
+CMD python utils/other/hotreload.py "order_queue/src/app.py"
+

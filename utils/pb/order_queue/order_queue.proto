@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package order_queue;
+
+service OrderQueue {
+  // Enqueue a new order
+  rpc EnqueueOrder(EnqueueRequest) returns (EnqueueResponse);
+
+  // Dequeue an order (to be consumed by the leader/executor)
+  rpc DequeueOrder(DequeueRequest) returns (DequeueResponse);
+
+  // Clear order data (optional cleanup)
+  rpc ClearOrderData(ClearOrderRequest) returns (ClearOrderResponse);
+}
+
+message OrderItem {
+  string book_id = 1;
+  string name = 2;
+  int32 quantity = 3;
+}
+
+message BillingAddress {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string zip_code = 4;
+  string country = 5;
+}
+
+message EnqueueRequest {
+  string order_id = 1;
+  string user_id = 2;
+  float amount = 3;
+  repeated OrderItem items = 4;
+  BillingAddress billing_address = 5;
+  string shipping_method = 6;
+  string user_comment = 7;
+  bool gift_wrapping = 8;
+}
+
+message EnqueueResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message DequeueRequest {}
+
+message DequeueResponse {
+  bool success = 1;
+  Order order = 2;
+}
+
+message Order {
+  string order_id = 1;
+  string user_id = 2;
+  float amount = 3;
+  repeated OrderItem items = 4;
+  BillingAddress billing_address = 5;
+  string shipping_method = 6;
+  string user_comment = 7;
+  bool gift_wrapping = 8;
+}
+
+message ClearOrderRequest {
+  string order_id = 1;
+}
+
+message ClearOrderResponse {
+  bool success = 1;
+}

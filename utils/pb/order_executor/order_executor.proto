@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package order_executor;
+
+service OrderExecutor {
+  // Request the leader to execute the next order
+  rpc ExecuteNextOrder(ExecuteRequest) returns (ExecuteResponse);
+
+  // Optional: notify executor shutdown or failover
+  rpc NotifyExit(ExitNotification) returns (ExitAck);
+}
+
+message ExecuteRequest {}
+
+message ExecuteResponse {
+  bool success = 1;
+  string message = 2;
+  string order_id = 3;
+}
+
+message ExitNotification {
+  string instance_id = 1;
+}
+
+message ExitAck {
+  bool received = 1;
+}

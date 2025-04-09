@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package election;
+
+// The ElectionService defines the RPC methods used for leader election between Order Executors.
+service ElectionService {
+  // Initiates a leader election process.
+  rpc StartElection (ElectionRequest) returns (ElectionResponse);
+
+  // Broadcasts the elected leader to all other nodes.
+  rpc AnnounceLeader (LeaderAnnouncement) returns (Ack);
+
+  // Used by the leader to signal that it is still alive.
+  rpc Heartbeat (HeartbeatRequest) returns (Ack);
+}
+
+// Request message to start an election.
+// Includes the executor's identifier and an optional priority value.
+message ElectionRequest {
+  // Unique identifier of the executor (e.g., hostname or container ID).
+  string executor_id = 1;
+
+  // Priority value used for election algorithms (e.g., higher number wins).
+  int32 priority = 2;
+}
+
+// Response message for an election request.
+// Indicates whether the election was accepted or denied.
+message ElectionResponse {
+  // True if the request was accepted or a higher priority node responded.
+  bool ok = 1;
+}
+
+// Message to announce the newly elected leader to other nodes.
+message LeaderAnnouncement {
+  // Identifier of the elected leader.
+  string leader_id = 1;
+}
+
+// Message sent by the leader to all nodes to indicate liveness.
+message HeartbeatRequest {
+  // ID of the leader sending the heartbeat.
+  string executor_id = 1;
+}
+
+// Generic acknowledgment used in response to heartbeats or announcements.
+message Ack {
+  // True if the operation was acknowledged successfully.
+  bool success = 1;
+}

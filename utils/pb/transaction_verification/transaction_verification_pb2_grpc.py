@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import fraud_detection_pb2 as fraud__detection__pb2
+import transaction_verification_pb2 as transaction__verification__pb2
 
 
-class FraudDetectionStub(object):
+class TransactionVerificationStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,22 +14,22 @@ class FraudDetectionStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.CheckFraud = channel.unary_unary(
-                '/fraud_detection.FraudDetection/CheckFraud',
-                request_serializer=fraud__detection__pb2.FraudRequest.SerializeToString,
-                response_deserializer=fraud__detection__pb2.FraudResponse.FromString,
+        self.VerifyTransaction = channel.unary_unary(
+                '/transaction_verification.TransactionVerification/VerifyTransaction',
+                request_serializer=transaction__verification__pb2.TransactionRequest.SerializeToString,
+                response_deserializer=transaction__verification__pb2.TransactionResponse.FromString,
                 )
         self.ClearOrderData = channel.unary_unary(
-                '/fraud_detection.FraudDetection/ClearOrderData',
-                request_serializer=fraud__detection__pb2.ClearOrderRequest.SerializeToString,
-                response_deserializer=fraud__detection__pb2.ClearOrderResponse.FromString,
+                '/transaction_verification.TransactionVerification/ClearOrderData',
+                request_serializer=transaction__verification__pb2.ClearOrderRequest.SerializeToString,
+                response_deserializer=transaction__verification__pb2.ClearOrderResponse.FromString,
                 )
 
 
-class FraudDetectionServicer(object):
+class TransactionVerificationServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def CheckFraud(self, request, context):
+    def VerifyTransaction(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -43,30 +43,30 @@ class FraudDetectionServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FraudDetectionServicer_to_server(servicer, server):
+def add_TransactionVerificationServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'CheckFraud': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckFraud,
-                    request_deserializer=fraud__detection__pb2.FraudRequest.FromString,
-                    response_serializer=fraud__detection__pb2.FraudResponse.SerializeToString,
+            'VerifyTransaction': grpc.unary_unary_rpc_method_handler(
+                    servicer.VerifyTransaction,
+                    request_deserializer=transaction__verification__pb2.TransactionRequest.FromString,
+                    response_serializer=transaction__verification__pb2.TransactionResponse.SerializeToString,
             ),
             'ClearOrderData': grpc.unary_unary_rpc_method_handler(
                     servicer.ClearOrderData,
-                    request_deserializer=fraud__detection__pb2.ClearOrderRequest.FromString,
-                    response_serializer=fraud__detection__pb2.ClearOrderResponse.SerializeToString,
+                    request_deserializer=transaction__verification__pb2.ClearOrderRequest.FromString,
+                    response_serializer=transaction__verification__pb2.ClearOrderResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'fraud_detection.FraudDetection', rpc_method_handlers)
+            'transaction_verification.TransactionVerification', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class FraudDetection(object):
+class TransactionVerification(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def CheckFraud(request,
+    def VerifyTransaction(request,
             target,
             options=(),
             channel_credentials=None,
@@ -76,9 +76,9 @@ class FraudDetection(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/CheckFraud',
-            fraud__detection__pb2.FraudRequest.SerializeToString,
-            fraud__detection__pb2.FraudResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/transaction_verification.TransactionVerification/VerifyTransaction',
+            transaction__verification__pb2.TransactionRequest.SerializeToString,
+            transaction__verification__pb2.TransactionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -93,8 +93,8 @@ class FraudDetection(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/ClearOrderData',
-            fraud__detection__pb2.ClearOrderRequest.SerializeToString,
-            fraud__detection__pb2.ClearOrderResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/transaction_verification.TransactionVerification/ClearOrderData',
+            transaction__verification__pb2.ClearOrderRequest.SerializeToString,
+            transaction__verification__pb2.ClearOrderResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

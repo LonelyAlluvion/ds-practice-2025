@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import fraud_detection_pb2 as fraud__detection__pb2
+import suggestions_pb2 as suggestions__pb2
 
 
-class FraudDetectionStub(object):
+class SuggestionsStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,22 +14,22 @@ class FraudDetectionStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.CheckFraud = channel.unary_unary(
-                '/fraud_detection.FraudDetection/CheckFraud',
-                request_serializer=fraud__detection__pb2.FraudRequest.SerializeToString,
-                response_deserializer=fraud__detection__pb2.FraudResponse.FromString,
+        self.RecommendBooks = channel.unary_unary(
+                '/suggestions.Suggestions/RecommendBooks',
+                request_serializer=suggestions__pb2.RecommendationRequest.SerializeToString,
+                response_deserializer=suggestions__pb2.RecommendationResponse.FromString,
                 )
         self.ClearOrderData = channel.unary_unary(
-                '/fraud_detection.FraudDetection/ClearOrderData',
-                request_serializer=fraud__detection__pb2.ClearOrderRequest.SerializeToString,
-                response_deserializer=fraud__detection__pb2.ClearOrderResponse.FromString,
+                '/suggestions.Suggestions/ClearOrderData',
+                request_serializer=suggestions__pb2.ClearOrderRequest.SerializeToString,
+                response_deserializer=suggestions__pb2.ClearOrderResponse.FromString,
                 )
 
 
-class FraudDetectionServicer(object):
+class SuggestionsServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def CheckFraud(self, request, context):
+    def RecommendBooks(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -43,30 +43,30 @@ class FraudDetectionServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FraudDetectionServicer_to_server(servicer, server):
+def add_SuggestionsServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'CheckFraud': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckFraud,
-                    request_deserializer=fraud__detection__pb2.FraudRequest.FromString,
-                    response_serializer=fraud__detection__pb2.FraudResponse.SerializeToString,
+            'RecommendBooks': grpc.unary_unary_rpc_method_handler(
+                    servicer.RecommendBooks,
+                    request_deserializer=suggestions__pb2.RecommendationRequest.FromString,
+                    response_serializer=suggestions__pb2.RecommendationResponse.SerializeToString,
             ),
             'ClearOrderData': grpc.unary_unary_rpc_method_handler(
                     servicer.ClearOrderData,
-                    request_deserializer=fraud__detection__pb2.ClearOrderRequest.FromString,
-                    response_serializer=fraud__detection__pb2.ClearOrderResponse.SerializeToString,
+                    request_deserializer=suggestions__pb2.ClearOrderRequest.FromString,
+                    response_serializer=suggestions__pb2.ClearOrderResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'fraud_detection.FraudDetection', rpc_method_handlers)
+            'suggestions.Suggestions', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class FraudDetection(object):
+class Suggestions(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def CheckFraud(request,
+    def RecommendBooks(request,
             target,
             options=(),
             channel_credentials=None,
@@ -76,9 +76,9 @@ class FraudDetection(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/CheckFraud',
-            fraud__detection__pb2.FraudRequest.SerializeToString,
-            fraud__detection__pb2.FraudResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/suggestions.Suggestions/RecommendBooks',
+            suggestions__pb2.RecommendationRequest.SerializeToString,
+            suggestions__pb2.RecommendationResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -93,8 +93,8 @@ class FraudDetection(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/ClearOrderData',
-            fraud__detection__pb2.ClearOrderRequest.SerializeToString,
-            fraud__detection__pb2.ClearOrderResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/suggestions.Suggestions/ClearOrderData',
+            suggestions__pb2.ClearOrderRequest.SerializeToString,
+            suggestions__pb2.ClearOrderResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

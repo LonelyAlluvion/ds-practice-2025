@@ -1,156 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center overflow-y-auto">
-    <div class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
-        <form id="checkoutForm">
-            <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Checkout Page</h1>
+  <div class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
+    <form id="checkoutForm">
+      <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Checkout Page</h1>
 
-            <div class="mb-6">
-                <h2 class="text-lg font-semibold text-gray-700">Items</h2>
-                <ul id="itemList" class="list-none p-0 mt-2 space-y-2">
-                    <!-- Items will be dynamically rendered here -->
-                </ul>
-            </div>
+      <!-- Dynamic Book Input -->
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold text-gray-700">Books</h2>
+        <div id="bookInputs">
+          <div class="flex space-x-2 mb-2">
+            <input type="text" name="bookId[]" placeholder="Book ID" required class="w-1/4 border border-gray-300 rounded-lg p-2" />
+            <input type="text" name="bookName[]" placeholder="Book Name" required class="w-1/2 border border-gray-300 rounded-lg p-2" />
+            <input type="number" name="bookQuantity[]" placeholder="Quantity" min="1" required class="w-1/4 border border-gray-300 rounded-lg p-2" />
+          </div>
+        </div>
+        <button type="button" id="addBook" class="mt-2 bg-green-500 text-white px-3 py-1 rounded-lg">Add Book</button>
+      </div>
 
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
-                <input type="text" id="name" name="name" value="John Doe" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="contact" class="block text-sm font-medium text-gray-700">Contact:</label>
-                <input type="email" id="contact" name="contact" value="john.doe@example.com" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="creditCard" class="block text-sm font-medium text-gray-700">Credit Card Number:</label>
-                <input type="text" id="creditCard" name="creditCard" value="4111111111111111" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="expirationDate" class="block text-sm font-medium text-gray-700">Expiration Date:</label>
-                <input type="text" id="expirationDate" name="expirationDate" value="12/25" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700">CVV:</label>
-                <input type="text" id="cvv" name="cvv" value="123" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="userComment" class="block text-sm font-medium text-gray-700">Comment:</label>
-                <textarea id="userComment" name="userComment" class="w-full border border-gray-300 rounded-lg p-2 mt-1">Please handle with care.</textarea>
-            </div>
-            <div class="mb-4">
-                <label for="billingAddress" class="block text-sm font-medium text-gray-700">Billing Address:</label>
-                <input type="text" id="billingStreet" name="billingStreet" value="123 Main St" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                <input type="text" id="billingCity" name="billingCity" value="Springfield" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                <input type="text" id="billingState" name="billingState" value="IL" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                <input type="text" id="billingZip" name="billingZip" value="62701" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                <input type="text" id="billingCountry" name="billingCountry" value="USA" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-            </div>
-            <div class="mb-4">
-                <label for="shippingMethod" class="block text-sm font-medium text-gray-700">Shipping Method:</label>
-                <select id="shippingMethod" name="shippingMethod" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
-                    <option value="Standard" selected>Standard</option>
-                    <option value="Express">Express</option>
-                    <option value="Next-Day">Next-Day</option>
-                </select>
-            </div>
-            <div class="mb-4 flex items-center">
-                <input type="checkbox" id="giftWrapping" name="giftWrapping" checked class="mr-2 border border-gray-300 rounded">
-                <label for="giftWrapping" class="text-sm font-medium text-gray-700">Gift Wrapping</label>
-            </div>
-            <div class="mb-4 flex items-center">
-                <input type="checkbox" id="terms" name="terms" checked required class="mr-2 border border-gray-300 rounded">
-                <label for="terms" class="text-sm font-medium text-gray-700">Accept Terms and Conditions</label>
-            </div>
-            <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700">Submit Order</button>
-        </form>
+      <!-- User Info -->
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+        <input type="text" id="name" name="name" value="John Doe123" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" />
+      </div>
+      <div class="mb-4">
+        <label for="contact" class="block text-sm font-medium text-gray-700">Contact:</label>
+        <input type="email" id="contact" name="contact" value="john.doe@example.com" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" />
+      </div>
 
-        <div id="response" class="mt-6 p-4 border rounded-lg hidden"></div>
+      <!-- Payment -->
+      <div class="mb-4">
+        <label for="creditCard" class="block text-sm font-medium text-gray-700">Credit Card Number:</label>
+        <input type="text" id="creditCard" name="creditCard" value="4111111111111111" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" />
+      </div>
+      <div class="mb-4">
+        <label for="expirationDate" class="block text-sm font-medium text-gray-700">Expiration Date:</label>
+        <input type="text" id="expirationDate" name="expirationDate" value="12/25" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" />
+      </div>
+      <div class="mb-4">
+        <label for="cvv" class="block text-sm font-medium text-gray-700">CVV:</label>
+        <input type="text" id="cvv" name="cvv" value="123" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" />
+      </div>
+
+      <!-- Comment -->
+      <div class="mb-4">
+        <label for="userComment" class="block text-sm font-medium text-gray-700">Comment:</label>
+        <textarea id="userComment" name="userComment" class="w-full border border-gray-300 rounded-lg p-2 mt-1">Please handle with care.</textarea>
+      </div>
+
+      <!-- Billing Address -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Billing Address:</label>
+        <input type="text" id="streetAddress" name="streetAddress" value="123 Main St" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Street Address"/>
+        <input type="text" id="city" name="city" value="New York" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="City"/>
+        <input type="text" id="state" name="state" value="NY" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="State"/>
+        <input type="text" id="zipCode" name="zipCode" value="10001" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Zip Code"/>
+        <input type="text" id="country" name="country" value="USA" required class="w-full border border-gray-300 rounded-lg p-2 mt-1" placeholder="Country"/>
+      </div>
+
+      <!-- Shipping -->
+      <div class="mb-4">
+        <label for="shippingMethod" class="block text-sm font-medium text-gray-700">Shipping Method:</label>
+        <select id="shippingMethod" name="shippingMethod" required class="w-full border border-gray-300 rounded-lg p-2 mt-1">
+          <option value="Standard" selected>Standard</option>
+          <option value="Express">Express</option>
+          <option value="Next-Day">Next-Day</option>
+        </select>
+      </div>
+
+      <div class="mb-4 flex items-center">
+        <input type="checkbox" id="giftWrapping" name="giftWrapping" checked class="mr-2 border border-gray-300 rounded" />
+        <label for="giftWrapping" class="text-sm font-medium text-gray-700">Gift Wrapping</label>
+      </div>
+
+      <div class="mb-4 flex items-center">
+        <input type="checkbox" id="terms" name="terms" checked required class="mr-2 border border-gray-300 rounded" />
+        <label for="terms" class="text-sm font-medium text-gray-700">Accept Terms and Conditions</label>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700">Submit Order</button>
+    </form>
+
+    <!-- Suggested Book Section -->
+    <div id="recommendationSection" class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">📚 Suggested Books</h2>
+
+      <div class="mb-4 p-4 rounded-lg border bg-gray-50">
+        <p class="text-sm text-gray-600">
+          <span class="font-semibold text-gray-800">Order ID:</span>
+          <span id="displayOrderId" class="ml-2 text-blue-600">Empty</span>
+        </p>
+        <p class="text-sm text-gray-600 mt-1">
+          <span class="font-semibold text-gray-800">Status:</span>
+          <span id="displayOrderStatus" class="ml-2 px-2 py-1 rounded-full text-white bg-gray-400 text-xs font-semibold">Empty</span>
+        </p>
+      </div>
+
+      <div id="recommendationCards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="text-gray-500 italic">No recommendations yet.</div>
+      </div>
     </div>
 
-    <script>
-        const items = [
-            { name: "Book A", quantity: 1 },
-            { name: "Book B", quantity: 2 }
-        ];
+    <!-- Raw JSON Response (optional) -->
+<!--    <div id="response" class="mt-6 p-4 border rounded-lg hidden"></div>-->
+  </div>
 
-        const itemListElement = document.getElementById('itemList');
-        items.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = `${item.name} - Quantity: ${item.quantity}`;
-            li.className = "bg-gray-100 p-3 rounded-lg";
-            itemListElement.appendChild(li);
+  <script>
+    // Add new book input row
+    document.getElementById('addBook').addEventListener('click', function () {
+      const bookInputs = document.getElementById('bookInputs');
+      const div = document.createElement('div');
+      div.classList.add('flex', 'space-x-2', 'mb-2');
+      div.innerHTML = `
+        <input type="text" name="bookId[]" placeholder="Book ID" required class="w-1/4 border border-gray-300 rounded-lg p-2">
+        <input type="text" name="bookName[]" placeholder="Book Name" required class="w-1/2 border border-gray-300 rounded-lg p-2">
+        <input type="number" name="bookQuantity[]" placeholder="Quantity" min="1" required class="w-1/4 border border-gray-300 rounded-lg p-2">
+      `;
+      bookInputs.appendChild(div);
+    });
+
+    // Handle form submission
+    document.getElementById('checkoutForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const bookIds = document.querySelectorAll('input[name="bookId[]"]');
+      const bookNames = document.querySelectorAll('input[name="bookName[]"]');
+      const bookQuantities = document.querySelectorAll('input[name="bookQuantity[]"]');
+
+      const items = [];
+      for (let i = 0; i < bookNames.length; i++) {
+        items.push({
+          bookId: bookIds[i].value,
+          name: bookNames[i].value,
+          quantity: parseInt(bookQuantities[i].value)
+        });
+      }
+
+      const formData = new FormData(event.target);
+      const data = {
+        user: {
+          name: formData.get('name'),
+          contact: formData.get('contact')
+        },
+        creditCard: {
+          number: formData.get('creditCard'),
+          expirationDate: formData.get('expirationDate'),
+          cvv: formData.get('cvv')
+        },
+        userComment: formData.get('userComment'),
+        billingAddress: {
+          street: formData.get('streetAddress'),
+          city: formData.get('city'),
+          state: formData.get('state'),
+          zipCode: formData.get('zipCode'),
+          country: formData.get('country')
+        },
+        items: items,
+        shippingMethod: formData.get('shippingMethod'),
+        giftWrapping: formData.get('giftWrapping') === 'on',
+        termsAccepted: formData.get('terms') === 'on'
+      };
+
+      console.log("Submitting data:", JSON.stringify(data));
+
+      try {
+        const response = await fetch('http://localhost:8081/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
 
-        document.getElementById('checkoutForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+        const result = await response.json();
+        renderRecommendations(result);
 
-            const formData = new FormData(event.target);
-            const data = {
-                user: {
-                    name: formData.get('name'),
-                    contact: formData.get('contact'),
-                },
-                creditCard: {
-                    number: formData.get('creditCard'),
-                    expirationDate: formData.get('expirationDate'),
-                    cvv: formData.get('cvv'),
-                },
-                userComment: formData.get('userComment'),
-                items: items,
-                billingAddress: {
-                    street: formData.get('billingStreet'),
-                    city: formData.get('billingCity'),
-                    state: formData.get('billingState'),
-                    zip: formData.get('billingZip'),
-                    country: formData.get('billingCountry'),
-                },
-                shippingMethod: formData.get('shippingMethod'),
-                giftWrapping: formData.get('giftWrapping') === 'on',
-                termsAccepted: formData.get('terms') === 'on',
-            };
+        // document.getElementById("response").classList.remove("hidden");
+        // document.getElementById("response").textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        document.getElementById("response").classList.remove("hidden");
+        document.getElementById("response").textContent = "❌ Submission failed. Please check the server or network.";
+      }
+    });
 
-            try {
-                const response = await fetch('http://localhost:8081/checkout', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                });
+    // Render order result and book recommendations
+    function renderRecommendations(result) {
+      const orderId = result.orderId || "Empty";
+      const status = result.status || "Empty";
+      const books = result.suggestedBooks || [];
 
-                const result = await response.json();
-                const responseDiv = document.getElementById('response');
+      document.getElementById("displayOrderId").textContent = orderId;
 
-                if (response.ok) {
-                    const suggestedBooks = result.suggestedBooks.map(book => `<li>${book.title} by ${book.author}</li>`).join('');
-                    responseDiv.innerHTML = `
-                        <strong>Order status: ${result.status}</strong><br>
-                        Order ID: ${result.orderId}<br>
-                        ${result.status === "Order Approved" ?
-                            `Suggested Books:
-                            <ul class="list-disc pl-5 mt-2 space-y-1">${suggestedBooks}</ul>`
-                        : ``
-                        }
-                    `;
-                    color = result.status === 'Order Approved' ? 'green' : 'red';
-                    responseDiv.className = `mt-6 p-4 border rounded-lg bg-${color}-100 text-${color}-700`;
-                } else {
-                    responseDiv.textContent = `Error: ${result.error.message}`;
-                    responseDiv.className = "mt-6 p-4 border rounded-lg bg-red-100 text-red-700";
-                }
+      const statusEl = document.getElementById("displayOrderStatus");
+      statusEl.textContent = status;
+      statusEl.className = `ml-2 px-2 py-1 rounded-full text-xs font-semibold text-white ${
+        status === "Order Approved" ? "bg-green-500" :
+        status === "Order Rejected" ? "bg-red-500" : "bg-gray-400"
+      }`;
 
-                responseDiv.style.display = 'block';
-                // scroll to the bottom of the page
-                window.scrollTo(0, document.body.scrollHeight);
-            } catch (error) {
-                const responseDiv = document.getElementById('response');
-                responseDiv.textContent = `Unexpected error occurred: ${error.message}`;
-                responseDiv.className = "mt-6 p-4 border rounded-lg bg-red-100 text-red-700";
-                responseDiv.style.display = 'block';
-            }
-        });
-    </script>
+      const container = document.getElementById("recommendationCards");
+      container.innerHTML = "";
+
+      if (books.length === 0) {
+        container.innerHTML = `<div class="text-gray-500 italic">No book recommendations available.</div>`;
+        return;
+      }
+
+      books.forEach(book => {
+        const title = book.title || "Untitled";
+        const card = document.createElement("div");
+        card.className = "p-4 bg-white rounded-lg shadow border border-gray-200";
+        card.innerHTML = `<h3 class="text-lg font-bold text-blue-800">${title}</h3>`;
+        container.appendChild(card);
+      });
+    }
+
+    // Display initial empty recommendation state
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRecommendations({});
+    });
+  </script>
 </body>
 </html>
