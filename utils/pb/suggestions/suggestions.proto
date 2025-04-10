@@ -4,12 +4,20 @@ package suggestions;
 
 service Suggestions {
     rpc RecommendBooks(RecommendationRequest) returns (RecommendationResponse);
+<<<<<<< HEAD
+=======
+    rpc ClearOrderData(ClearOrderRequest) returns (ClearOrderResponse); // 新增清理订单方法
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 }
 
 message RecommendationRequest {
     string order_id = 1;
     string user_id = 2;
     repeated Book purchased_books = 3;
+<<<<<<< HEAD
+=======
+    repeated int32 vector_clock = 4; // 新增向量时钟字段
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 }
 
 message Book {
@@ -20,4 +28,19 @@ message Book {
 
 message RecommendationResponse {
     repeated Book suggested_books = 1;
+<<<<<<< HEAD
 }
+=======
+    repeated int32 vector_clock = 2; // 传递向量时钟
+}
+
+message ClearOrderRequest {
+    string order_id = 1;
+    repeated int32 vector_clock = 2; // 传递当前的向量时钟
+}
+
+message ClearOrderResponse {
+    bool success = 1;
+}
+
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)

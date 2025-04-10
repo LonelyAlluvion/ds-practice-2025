@@ -17,7 +17,11 @@ def test_transaction_verification(order_id, user_id, amount, credit_card, discou
     with grpc.insecure_channel("localhost:50052") as channel:
         stub = transaction_verification_pb2_grpc.TransactionVerificationStub(channel)
 
+<<<<<<< HEAD
         # Build the request object
+=======
+        # 构建请求对象
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
         request = transaction_verification.TransactionRequest(
             order_id=order_id,
             user_id=user_id,
@@ -33,10 +37,17 @@ def test_transaction_verification(order_id, user_id, amount, credit_card, discou
             )
         )
 
+<<<<<<< HEAD
         # Send the request and get the response
         response = stub.VerifyTransaction(request)
 
         # Print the transaction verification result
+=======
+        # 发送请求并获取响应
+        response = stub.VerifyTransaction(request)
+
+        # 打印返回的验证结果
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
         print(f"Transaction Verification for Order {order_id}, User {user_id}:")
         print(f"Approved: {response.approved}, Reason: {response.reason}")
         print(f"Final Amount Charged: {response.details.charged_amount}")
@@ -44,7 +55,11 @@ def test_transaction_verification(order_id, user_id, amount, credit_card, discou
         print("===")
 
 
+<<<<<<< HEAD
 # ✅ Test 1: Valid credit card, correct CVV, and valid discount code
+=======
+# ✅ 测试 1：有效的信用卡，正确的 CVV 和有效的折扣码
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_transaction_verification(
     order_id="ORD-JohnDoe-1",
     user_id="user567",
@@ -64,7 +79,11 @@ test_transaction_verification(
     }
 )
 
+<<<<<<< HEAD
 # ❌ Test 2: Expired credit card
+=======
+# ❌ 测试 2：过期的信用卡
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_transaction_verification(
     order_id="ORD-JohnDoe-2",
     user_id="user789",
@@ -84,7 +103,11 @@ test_transaction_verification(
     }
 )
 
+<<<<<<< HEAD
 # ❌ Test 3: Invalid CVV
+=======
+# ❌ 测试 3：无效的 CVV
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_transaction_verification(
     order_id="ORD-JaneDoe-3",
     user_id="user123",
@@ -103,3 +126,26 @@ test_transaction_verification(
         "country": "USA"
     }
 )
+<<<<<<< HEAD
+=======
+
+# ❌ 测试 4：无效的折扣码
+test_transaction_verification(
+    order_id="ORD-Alice-4",
+    user_id="user999",
+    amount=50,
+    credit_card=transaction_verification.CreditCard(
+        number="4111111111111111",
+        expiration_date="12/25",
+        cvv="789"
+    ),
+    discount_code="INVALIDCODE",
+    billing_address={
+        "street": "101 Pine St",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001",
+        "country": "USA"
+    }
+)
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)

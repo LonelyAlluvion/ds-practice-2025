@@ -14,7 +14,11 @@ _sym_db = _symbol_database.Default()
 
 
 
+<<<<<<< HEAD
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x66raud_detection.proto\x12\x0f\x66raud_detection\"\xe5\x01\n\x0c\x46raudRequest\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x02\x12\x17\n\x0fshipping_method\x18\x04 \x01(\t\x12\x14\n\x0cuser_comment\x18\x05 \x01(\t\x12\x15\n\rgift_wrapping\x18\x06 \x01(\x08\x12\x0f\n\x07\x63ountry\x18\x07 \x01(\t\x12\x11\n\ttimestamp\x18\x08 \x01(\x03\x12\x38\n\x0f\x62illing_address\x18\t \x01(\x0b\x32\x1f.fraud_detection.BillingAddress\"[\n\x0e\x42illingAddress\x12\x0e\n\x06street\x18\x01 \x01(\t\x12\x0c\n\x04\x63ity\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\x12\x0b\n\x03zip\x18\x04 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x05 \x01(\t\"e\n\rFraudResponse\x12\x0f\n\x07\x66lagged\x18\x01 \x01(\x08\x12\x0e\n\x06reason\x18\x02 \x01(\t\x12\x33\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\".fraud_detection.FraudCheckDetails\"\xb5\x01\n\x11\x46raudCheckDetails\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x38\n\x0f\x62illing_address\x18\x03 \x01(\x0b\x32\x1f.fraud_detection.BillingAddress\x12\x14\n\x0cuser_comment\x18\x04 \x01(\t\x12\x15\n\rgift_wrapping\x18\x05 \x01(\x08\x12\x17\n\x0fshipping_method\x18\x06 \x01(\t2]\n\x0e\x46raudDetection\x12K\n\nCheckFraud\x12\x1d.fraud_detection.FraudRequest\x1a\x1e.fraud_detection.FraudResponseb\x06proto3')
+=======
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x66raud_detection.proto\x12\x0f\x66raud_detection\"\xfb\x01\n\x0c\x46raudRequest\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x02\x12\x17\n\x0fshipping_method\x18\x04 \x01(\t\x12\x14\n\x0cuser_comment\x18\x05 \x01(\t\x12\x15\n\rgift_wrapping\x18\x06 \x01(\x08\x12\x0f\n\x07\x63ountry\x18\x07 \x01(\t\x12\x11\n\ttimestamp\x18\x08 \x01(\x03\x12\x38\n\x0f\x62illing_address\x18\t \x01(\x0b\x32\x1f.fraud_detection.BillingAddress\x12\x14\n\x0cvector_clock\x18\n \x03(\x05\"[\n\x0e\x42illingAddress\x12\x0e\n\x06street\x18\x01 \x01(\t\x12\x0c\n\x04\x63ity\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\x12\x0b\n\x03zip\x18\x04 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x05 \x01(\t\"{\n\rFraudResponse\x12\x0f\n\x07\x66lagged\x18\x01 \x01(\x08\x12\x0e\n\x06reason\x18\x02 \x01(\t\x12\x33\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\".fraud_detection.FraudCheckDetails\x12\x14\n\x0cvector_clock\x18\x04 \x03(\x05\"\xb5\x01\n\x11\x46raudCheckDetails\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x38\n\x0f\x62illing_address\x18\x03 \x01(\x0b\x32\x1f.fraud_detection.BillingAddress\x12\x14\n\x0cuser_comment\x18\x04 \x01(\t\x12\x15\n\rgift_wrapping\x18\x05 \x01(\x08\x12\x17\n\x0fshipping_method\x18\x06 \x01(\t\";\n\x11\x43learOrderRequest\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x14\n\x0cvector_clock\x18\x02 \x03(\x05\"%\n\x12\x43learOrderResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xb8\x01\n\x0e\x46raudDetection\x12K\n\nCheckFraud\x12\x1d.fraud_detection.FraudRequest\x1a\x1e.fraud_detection.FraudResponse\x12Y\n\x0e\x43learOrderData\x12\".fraud_detection.ClearOrderRequest\x1a#.fraud_detection.ClearOrderResponseb\x06proto3')
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,6 +26,7 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fraud_detection_pb2', _glob
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_FRAUDREQUEST']._serialized_start=43
+<<<<<<< HEAD
   _globals['_FRAUDREQUEST']._serialized_end=272
   _globals['_BILLINGADDRESS']._serialized_start=274
   _globals['_BILLINGADDRESS']._serialized_end=365
@@ -31,4 +36,19 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_FRAUDCHECKDETAILS']._serialized_end=652
   _globals['_FRAUDDETECTION']._serialized_start=654
   _globals['_FRAUDDETECTION']._serialized_end=747
+=======
+  _globals['_FRAUDREQUEST']._serialized_end=294
+  _globals['_BILLINGADDRESS']._serialized_start=296
+  _globals['_BILLINGADDRESS']._serialized_end=387
+  _globals['_FRAUDRESPONSE']._serialized_start=389
+  _globals['_FRAUDRESPONSE']._serialized_end=512
+  _globals['_FRAUDCHECKDETAILS']._serialized_start=515
+  _globals['_FRAUDCHECKDETAILS']._serialized_end=696
+  _globals['_CLEARORDERREQUEST']._serialized_start=698
+  _globals['_CLEARORDERREQUEST']._serialized_end=757
+  _globals['_CLEARORDERRESPONSE']._serialized_start=759
+  _globals['_CLEARORDERRESPONSE']._serialized_end=796
+  _globals['_FRAUDDETECTION']._serialized_start=799
+  _globals['_FRAUDDETECTION']._serialized_end=983
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 # @@protoc_insertion_point(module_scope)

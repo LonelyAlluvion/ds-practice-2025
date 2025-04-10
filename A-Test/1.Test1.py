@@ -17,7 +17,11 @@ def test_fraud_check(order_id, user_id, amount, shipping_method, user_comment, g
     with grpc.insecure_channel("localhost:50051") as channel:
         stub = fraud_detection_pb2_grpc.FraudDetectionStub(channel)
 
+<<<<<<< HEAD
         # Construct the request object
+=======
+        # 构造请求对象
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
         request = fraud_detection.FraudRequest(
             order_id=order_id,
             user_id=user_id,
@@ -33,6 +37,7 @@ def test_fraud_check(order_id, user_id, amount, shipping_method, user_comment, g
                 zip=billing_address.zip,
                 country=billing_address.country,
             ),
+<<<<<<< HEAD
             timestamp=int(time.time())  # Use the current timestamp
         )
 
@@ -44,6 +49,19 @@ def test_fraud_check(order_id, user_id, amount, shipping_method, user_comment, g
 
 
 # ✅ Test 1: Normal transaction
+=======
+            timestamp=int(time.time())  # 使用当前时间戳
+        )
+
+        # 发送请求并获取响应
+        response = stub.CheckFraud(request)
+
+        # 打印返回的结果
+        print(f"Fraud Check for Order {order_id}: {response.details.status}, Reason: {response.reason}")
+
+
+# ✅ 测试 1：正常交易
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_fraud_check(
     "ORD-JohnDoe-3",
     "user567",
@@ -60,7 +78,11 @@ test_fraud_check(
     )
 )
 
+<<<<<<< HEAD
 # ❌ Test 2: Amount exceeds transaction limit
+=======
+# ❌ 测试 2：金额超过交易限额
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_fraud_check(
     "ORD-AmountExceed-1",
     "user890",
@@ -77,10 +99,17 @@ test_fraud_check(
     )
 )
 
+<<<<<<< HEAD
 # ❌ Test 3: Blacklisted user
 test_fraud_check(
     "ORD-BlacklistedUser-1",
     "user123",  # user123 is on the blacklist
+=======
+# ❌ 测试 3：黑名单用户
+test_fraud_check(
+    "ORD-BlacklistedUser-1",
+    "user123",  # user123 是黑名单中的用户
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
     100,
     "Standard",
     "No special request.",
@@ -94,7 +123,11 @@ test_fraud_check(
     )
 )
 
+<<<<<<< HEAD
 # ❌ Test 4: High-risk country
+=======
+# ❌ 测试 4：高风险国家
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_fraud_check(
     "ORD-HighRisk-1",
     "user789",
@@ -111,7 +144,11 @@ test_fraud_check(
     )
 )
 
+<<<<<<< HEAD
 # ❌ Test 5: Multiple transactions in a short time
+=======
+# ❌ 测试 5：短时间内多次交易
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 test_fraud_check(
     "ORD-TooManyOrders-1",
     "user567",

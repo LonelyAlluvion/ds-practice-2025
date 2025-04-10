@@ -18,6 +18,14 @@ class FraudDetectionStub(object):
                 '/fraud_detection.FraudDetection/CheckFraud',
                 request_serializer=fraud__detection__pb2.FraudRequest.SerializeToString,
                 response_deserializer=fraud__detection__pb2.FraudResponse.FromString,
+<<<<<<< HEAD
+=======
+                )
+        self.ClearOrderData = channel.unary_unary(
+                '/fraud_detection.FraudDetection/ClearOrderData',
+                request_serializer=fraud__detection__pb2.ClearOrderRequest.SerializeToString,
+                response_deserializer=fraud__detection__pb2.ClearOrderResponse.FromString,
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
                 )
 
 
@@ -30,13 +38,31 @@ class FraudDetectionServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ClearOrderData(self, request, context):
+        """新增清理订单方法
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
 def add_FraudDetectionServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CheckFraud': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckFraud,
                     request_deserializer=fraud__detection__pb2.FraudRequest.FromString,
                     response_serializer=fraud__detection__pb2.FraudResponse.SerializeToString,
+<<<<<<< HEAD
+=======
+            ),
+            'ClearOrderData': grpc.unary_unary_rpc_method_handler(
+                    servicer.ClearOrderData,
+                    request_deserializer=fraud__detection__pb2.ClearOrderRequest.FromString,
+                    response_serializer=fraud__detection__pb2.ClearOrderResponse.SerializeToString,
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +88,25 @@ class FraudDetection(object):
         return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/CheckFraud',
             fraud__detection__pb2.FraudRequest.SerializeToString,
             fraud__detection__pb2.FraudResponse.FromString,
+<<<<<<< HEAD
+=======
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ClearOrderData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fraud_detection.FraudDetection/ClearOrderData',
+            fraud__detection__pb2.ClearOrderRequest.SerializeToString,
+            fraud__detection__pb2.ClearOrderResponse.FromString,
+>>>>>>> 34889cd (✅ Complete checkpoint-2: system integration with leader election, vector clock and backend orchestration)
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
